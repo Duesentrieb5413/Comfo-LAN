@@ -2,7 +2,7 @@
    Comfo-LAN Interface
 
    ATTENTION:
-         There is no warranty that this system will not damage your heating system!
+         There is no warranty that this system will not damage your ventilation system!
 
    Authors Tobias Schuh
 
@@ -10,7 +10,6 @@
            Frederik Holst (bsb@code-it.de) (basic implementation based on BSB LAN https://github.com/fredlcore/bsb_lan)
            Protocol implementation based on http://www.see-solutions.de/sonstiges/sonstiges.htm#Zehnder
            Air quality sensor implementation based on https://forum.arduino.cc/index.php?topic=350712.0
-           ENC28J60 reset implementation based on https://github.com/ntruchsess/arduino_uip/issues/167
 */
 
 //***********************************************************************
@@ -20,11 +19,6 @@
 #define PrgVer 1.0
 
 #include <UIPEthernet.h>
-#include "utility\Enc28J60Network.h"
-// ..utility\Enc28J60Network.h file -
-// move readReg() subroutine def from private to public
-#define NET_ENC28J60_ECON1                                0x1F
-#define NET_ENC28J60_ECON1_RXEN                           0x04
 #include <Arduino.h>
 #include "Wire.h"
 
@@ -72,8 +66,6 @@ static const int numMqttParameters = sizeof(MqttParameters) / (5 * sizeof(byte))
 #ifdef AirQualityCheck
 unsigned long lastAirQualityTime = millis();
 #endif
-
-unsigned long lastEthernetCheckTime = millis();
 
 /* buffer to print output lines*/
 #define OUTBUF_LEN  300
@@ -1415,24 +1407,6 @@ void loop() {
     lastAirQualityTime = millis();
   }
 #endif
-
-  // Check if ENC28J60 is still available
-  if (millis() - lastEthernetCheckTime >= (5000))
-  {
-    Serial.println(freeRam());
-    // Enc28J60 is Enc28J60Network class that defined in Enc28J60Network.h
-    // ENC28J60 ignore all incoming packets if ECON1.RXEN is not set
-    if  (! (Enc28J60.readReg((uint8_t) NET_ENC28J60_ECON1) & NET_ENC28J60_ECON1_RXEN)) {
-      Serial.println ("ENC28J60 reinit");
-      Enc28J60.init(mac);
-    }
-    lastEthernetCheckTime = millis();
-  }
-
-  if (!server) {
-    Serial.println("Server is not listening!");
-    server.begin();
-  }
 
   // Listen for incoming clients
   ethClient = server.available();
