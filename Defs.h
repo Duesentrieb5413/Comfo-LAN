@@ -6,11 +6,8 @@
 #define CMD_UNKNOWN 0x00000000u
 #define CMD_END     0xffffffffu
 
-const int ParameterName = 0;
-const int ParameterValue = 1;
-const int ParameterUnit = 2;
-
-const int ParameterTableSize = 32;
+const int ResponseTableSize = 32;
+const int ResponseTableChars = 70;
 
 /****************************************************/
 /* TABLES and STRINGS                       */
@@ -266,11 +263,11 @@ const char STR_A1_0[]  PROGMEM = "Konnektorplatine Version";
 const char STR_A1_3[]  PROGMEM = "Version CC-Ease";
 const char STR_A1_4[]  PROGMEM = "Version CC-Luxe";
 
-const char STR_98_0[]  PROGMEM = "IAQ Sensor";
-const char STR_98_1[]  PROGMEM = "Sensor Status";
-const char STR_98_2[]  PROGMEM = "CO2";
-const char STR_98_3[]  PROGMEM = "TVoCs";
-const char STR_98_4[]  PROGMEM = "Widerstand";
+const char STR_EF_0[]  PROGMEM = "Air Quality Sensor";
+const char STR_EF_1[]  PROGMEM = "Sensor Status";
+const char STR_EF_2[]  PROGMEM = "CO2";
+const char STR_EF_3[]  PROGMEM = "TVoCs";
+const char STR_EF_4[]  PROGMEM = "Widerstand";
 
 const char STR_99_0[]  PROGMEM = "Stufe setzen";
 const char STR_9B_0[]  PROGMEM = "RS232 Modus setzen";
