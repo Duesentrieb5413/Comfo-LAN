@@ -21,3 +21,10 @@ The following settings have to be adjusted in the config.h:
 After adapting the parameters, rename the file 'Config.h.default' to 'Config.h'.
 
 Finally upload the program to the Arduino.
+
+## Contributions
+
+* Gero Schumacher (gero.schumacher@gmail.com) (basic implementation based on BSB LAN https://github.com/fredlcore/bsb_lan)
+* Frederik Holst (bsb@code-it.de) (basic implementation based on BSB LAN https://github.com/fredlcore/bsb_lan)
+* Protocol implementation based on http://www.see-solutions.de/sonstiges/sonstiges.htm#Zehnder
+* Air quality sensor implementation based on https://forum.arduino.cc/index.php?topic=350712.0
