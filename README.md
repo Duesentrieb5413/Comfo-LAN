@@ -17,6 +17,7 @@ The following settings have to be adjusted in the config.h:
 * Optionally define a passkey
 * If no air quality sensor is connected, comment out line 62 ("#define AirQualityCheck")
 * If MQTT is not used, comment out line 51 ("#define MQTTBrokerIP"), otherwise adjust the MQTT-parameters
+
 After adapting the parameters, rename the file 'Config.h.default' to 'Config.h'.
 
-Upload the program to the Arduino.
+Finally upload the program to the Arduino.
